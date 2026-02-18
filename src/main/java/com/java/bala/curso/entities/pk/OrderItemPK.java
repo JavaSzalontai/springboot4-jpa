@@ -8,6 +8,7 @@ import com.java.bala.curso.entities.Product;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 
@@ -16,11 +17,11 @@ import jakarta.persistence.OneToOne;
 public class OrderItemPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
