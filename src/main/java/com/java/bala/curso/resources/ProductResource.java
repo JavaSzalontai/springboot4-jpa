@@ -13,7 +13,7 @@ import com.java.bala.curso.entities.Product;
 import com.java.bala.curso.services.ProductService;
 
 @RestController
-@RequestMapping(value = "/products")
+@RequestMapping(value = "products")
 public class ProductResource {
 
 	@Autowired
