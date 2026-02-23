@@ -13,6 +13,8 @@ import com.java.bala.curso.repositories.UserRepository;
 import com.java.bala.curso.services.exceptions.DatabaseException;
 import com.java.bala.curso.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 
 @Service
 public class UserService {
@@ -38,15 +40,7 @@ public class UserService {
 	
 	public void delete(Long id)
 	{
-//		repository.deleteById(id);
-		
-		
-//		 try { 
-//			 repository.deleteById(id); 
-//		 } catch (RuntimeException e) {
-//			 
-//		 e.printStackTrace(); 
-//		 }
+
 //		
 		 try { 
 			 	repository.deleteById(id); 
@@ -61,9 +55,16 @@ public class UserService {
 	}
 	
 	public User update(Long id,User obj){
-		User entity = repository.getReferenceById(id);
-		updateData(entity,obj);
-		return repository.save(entity);
+		
+		 try { 
+			 User entity = repository.getReferenceById(id);
+				updateData(entity,obj);
+				return repository.save(entity);
+			}	catch (EntityNotFoundException e) {
+					
+				throw new ResourceNotFoundException(id); 
+			}
+			
 	}
 	public User updateData(User entity,User obj){
 		entity.setName(obj.getName());
