@@ -19,7 +19,7 @@ import com.java.bala.curso.entities.User;
 import com.java.bala.curso.services.UserService;
 
 @RestController
-@RequestMapping(value = "users")
+@RequestMapping(value = "/users")
 public class UserResource {
 
 	@Autowired
